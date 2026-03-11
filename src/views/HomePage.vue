@@ -19,7 +19,7 @@
       </div>
     </ion-content>
  
-<ion-button @click="router.push('/tarefas')">ir para tarefa</ion-button>
+<ion-button @click="router.push('/tarefas')">ir para tarefas</ion-button>
  
   </ion-page>
 </template>
