@@ -44,11 +44,17 @@
 
 <script setup lang="ts">
 import { addOutline, trashOutline } from 'ionicons/icons';
+
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonInput, IonList, IonItem, IonIcon} from '@ionic/vue';
 import router from '@/router';
-import { ref } from 'vue' 
+import { ref, watch} from 'vue' 
+import { IonCard } from '@ionic/vue';
+import { useTarefas } from '@/composables/useTarefas'
+
+
 const tarefa = ref("")
 const tarefas = ref<string[]>([])
+const { totalPendentes } = useTarefas()
 
 
 function apagarTarefa(index:number) {
@@ -62,6 +68,12 @@ function AdicionarTarefa() {
   tarefa.value = ""
 }
 
+watch(totalPendentes, (valor) => {
+ if (valor === 0 && tarefas.value.length > 0) {
+ // Exibir IonAlert, IonToast ou alert() simples
+ alert('🎉 Parabéns! Todas as tarefas foram concluídas!')
+ }
+})
 
 
 
